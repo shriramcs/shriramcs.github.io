@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-blue">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shriram | DevOps Engineer</title>
+  <style>
+    :root {
+  --bg: #ffffff;
+  --text: #111111;
+  --primary: #0077ff;
+  --card: #f5f5f5;
+  --transition: 0.3s ease;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --bg: #121212;
+  --text: #f5f5f5;
+  --card: #1e1e1e;
+}
+
+/* Color Themes */
+.theme-blue { --primary: #0077ff; }
+.theme-green { --primary: #27ae60; }
+.theme-orange { --primary: #f39c12; }
+.theme-purple { --primary: #9b59b6; }
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+
+.container {
+  width: min(90%, 768px);
+  margin: auto;
+  padding: 1rem 0;
+}
+
+header {
+  background: var(--card);
+  padding: 1rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button,
+select {
+  font-size: 1rem;
+  padding: 0.4rem;
+  border-radius: var(--radius);
+  border: 1px solid #ccc;
+}
+
+.hero, .skills, .testimonials {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.skill-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.skill-list li {
+  background: var(--card);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: bold;
+}
+
+.btn {
+  background: var(--primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  margin-top: 1rem;
+  display: inline-block;
+  transition: background var(--transition);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.project-card {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+blockquote {
+  background: var(--card);
+  padding: 1rem;
+  font-style: italic;
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius);
+}
+
+.social-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 0;
+}
+
+.social-links a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.875rem;
+  background: var(--card);
+}
+
+/* Responsive */
+@media (min-width: 600px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <h1 class="logo">Shriram</h1>
+      <div class="controls">
+        <button id="theme-toggle" aria-label="Toggle dark mode">🌓</button>
+        <select id="color-theme" aria-label="Color Theme">
+          <option value="blue">Blue</option>
+          <option value="green">Green</option>
+          <option value="orange">Orange</option>
+          <option value="purple">Purple</option>
+        </select>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Hello, I'm Shriram 👋</h2>
+      <p>A DevOps Engineer focused on scalable systems, cloud infrastructure, and automation.</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </section>
+
+    <section class="skills">
+      <h3>Skills</h3>
+      <ul class="skill-list">
+        <li>Docker & Kubernetes</li>
+        <li>AWS & Terraform</li>
+        <li>CI/CD Automation</li>
+        <li>Linux & Scripting</li>
+      </ul>
+    </section>
+
+    <section id="projects" aria-label="Projects">
+      <h3>Featured Projects</h3>
+      <div class="project-grid">
+        <article class="project-card">
+          <h4>CI/CD Pipeline Automation</h4>
+          <p>Automated deployment workflows using GitHub Actions and Terraform for AWS.</p>
+        </article>
+        <article class="project-card">
+          <h4>Kubernetes Monitoring Stack</h4>
+          <p>Implemented Prometheus, Grafana, and Loki for a production-grade K8s cluster.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <h3>Testimonials</h3>
+      <blockquote>
+        "Shriram is incredibly professional and delivered our cloud infrastructure on time." – Client A
+      </blockquote>
+    </section>
+
+    <section id="contact" aria-label="Contact">
+      <h3>Contact Me</h3>
+      <ul class="social-links">
+        <li><a href="https://x.com" target="_blank">X</a></li>
+        <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Shriram Sapparad</p>
+  </footer>
+
+  <script>
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+
+    document.getElementById('color-theme').addEventListener('change', (e) => {
+      const color = e.target.value;
+      document.documentElement.className = 'theme-' + color;
+    });
+  </script>
+</body>
+</html>

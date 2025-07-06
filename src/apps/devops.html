@@ -4,10 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vitthal – DevOps Engineer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap" rel="stylesheet">
+
   <style>
     :root {
   --bg: #f5f7fa;
-  --primary: #1e293b;
+  --primary: #34507d;
+  --hero-bg: #34507d;
   --accent: #3b82f6;
   --text: #111827;
   --secondary-text: #6b7280;
@@ -16,6 +21,13 @@
   --grey: #e2dff0;
 }
 
+
+.heebo-5 {
+  font-family: "Heebo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
 
 * {
   margin: 0;
@@ -30,6 +42,11 @@ body {
   color: var(--text);
   scroll-behavior: smooth;
   transition: background 0.3s, color 0.3s;
+  font-family: "Heebo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  --radius: 5px;
 }
 
 
@@ -186,9 +203,13 @@ body.dark .theme-toggle label {
   color: var(--accent);
 }
 
+
+section h2 {
+    margin-bottom: 0.5rem;;
+}
 /* Hero */
 .hero {
-  background: var(--primary);
+  background: var(--hero-bg);
   color: var(--bg);
   text-align: center;
   padding: 4rem 1rem;
