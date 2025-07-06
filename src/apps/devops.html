@@ -6,13 +6,16 @@
   <title>Vitthal – DevOps Engineer Portfolio</title>
   <style>
     :root {
-  --bg: #f9fafb;
-  --primary: #71a4eb;
-  --accent: #4f46e5;
-  --text: #333;
-  --radius: 8px;
-  --font: 'Segoe UI', sans-serif;
+  --bg: #f5f7fa;
+  --primary: #1e293b;
+  --accent: #3b82f6;
+  --text: #111827;
+  --secondary-text: #6b7280;
+  --highlight: #e0f2fe;
+  --prodject: #f3f4f6;
+  --grey: #e2dff0;
 }
+
 
 * {
   margin: 0;
@@ -20,11 +23,111 @@
   box-sizing: border-box;
 }
 
+/* Global body styling */
 body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
   scroll-behavior: smooth;
+  transition: background 0.3s, color 0.3s;
+}
+
+
+/* Dark Theme Overrides */
+body.dark {
+  --bg: #0f172a;
+  --primary: #e2e8f0;
+  --accent: #60a5fa;
+  --text: #f8fafc;
+  --secondary-text: #94a3b8;
+  --highlight: #1e293b;
+  --prodject: rgb(29, 31, 36);
+  --grey: #272729;
+}
+
+/* Toggle styling */
+.theme-toggle {
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1; /* light gray */
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  font-size: 16px;
+  transition: background-color 0.4s ease;
+}
+
+.slider-icon::before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+  transform: translateX(4px);
+  top: 4px;
+  left: -1px;
+  z-index: 1;
+}
+
+input:checked + .slider-icon {
+  background-color: var(--accent);
+}
+
+input:checked + .slider-icon::before {
+  transform: translateX(35px);
+}
+
+/* Optional: dark icon color for contrast */
+.icon {
+  z-index: 2;
+  color: #1e293b;
+}
+
+input:checked + .slider-icon .icon {
+  color: #fff;
+}
+
+
+
+
+  /* fallback doesn't work reliably */
+/* #toggle-dark:checked ~ .nav-container ~ *,
+#toggle-dark:checked ~ * body {
+} */
+
+/* Actual toggle class – best practice is with JavaScript */
+
+body.dark .logo,
+body.dark .nav-links a,
+body.dark .hamburger,
+body.dark .theme-toggle label {
+  color: var(--text);
 }
 
 .container {
@@ -35,7 +138,7 @@ body {
 
 /* Navbar */
 .navbar {
-  background: white;
+  background: var(--bg);
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
@@ -86,7 +189,7 @@ body {
 /* Hero */
 .hero {
   background: var(--primary);
-  color: white;
+  color: var(--bg);
   text-align: center;
   padding: 4rem 1rem;
 }
@@ -109,7 +212,7 @@ body {
 }
 
 .skills-list li {
-  background: white;
+  background: var(--bg);
   border: 1px solid #ddd;
   padding: 0.75rem 1rem;
   border-radius: var(--radius);
@@ -118,7 +221,7 @@ body {
 
 /* Projects */
 .projects {
-  background: white;
+  background: var(--grey);
   padding: 3rem 0;
 }
 
@@ -129,7 +232,7 @@ body {
 }
 
 .project-card {
-  background: #f3f4f6;
+  background: var(--prodject);
   padding: 1.5rem;
   border-radius: var(--radius);
   box-shadow: 0 1px 5px rgba(0,0,0,0.05);
@@ -152,7 +255,7 @@ body {
 
 /* Contact Me */
 .contactme {
-  background: white;
+  background: var(--grey);
   padding: 3rem 0;
 }
 
@@ -187,7 +290,7 @@ body {
     top: 60px;
     left: 0;
     right: 0;
-    background: white;
+    background: var(--bg);
     flex-direction: column;
     align-items: center;
     gap: 1rem;
@@ -207,6 +310,29 @@ body {
   .nav-container {
     flex-wrap: wrap;
   }
+}
+
+.navbar,
+.hero,
+.skills,
+.projects,
+.experience,
+.footer {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.theme-fade-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: 9999;
+}
+
+body.theme-fading .theme-fade-overlay {
+  opacity: 1;
 }
 
   </style>
@@ -252,6 +378,20 @@ body {
         Vitthal Jolad
 
       </div>
+      <!-- <div class="theme-toggle">
+        <input type="checkbox" id="toggle-dark">
+        <label for="toggle-dark">🌙</label>
+      </div> -->
+      <div class="theme-toggle">
+        <label class="switch" aria-label="Toggle dark mode">
+          <input type="checkbox" id="toggle-dark" aria-checked="false" role="switch">
+          <span class="slider-icon" aria-hidden="true">
+            <span class="icon sun">☀️</span>
+            <span class="icon moon">🌙</span>
+          </span>
+        </label>
+      </div>
+
       <input type="checkbox" id="menu-toggle">
       <label for="menu-toggle" class="hamburger">&#9776;</label>
       <ul class="nav-links">
@@ -344,6 +484,26 @@ body {
       <p>&copy; 2025 Vitthal – DevOps Engineer</p>
     </div>
   </footer>
+  <div class="theme-fade-overlay"></div>
+  <script>
+  const toggle = document.getElementById('toggle-dark');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const storedTheme = localStorage.getItem('theme');
+
+  // Apply theme based on stored or system preference
+  if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+    document.body.classList.add('dark');
+    toggle.checked = true;
+    toggle.setAttribute('aria-checked', 'true');
+  }
+
+  toggle.addEventListener('change', () => {
+    const isDark = toggle.checked;
+    document.body.classList.toggle('dark', isDark);
+    toggle.setAttribute('aria-checked', isDark.toString());
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+</script>
 
 </body>
 </html>
